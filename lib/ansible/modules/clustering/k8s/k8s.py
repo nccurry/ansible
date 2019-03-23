@@ -142,7 +142,7 @@ EXAMPLES = '''
 - name: Create a Service object from an inline definition
   k8s:
     state: present
-    definition:
+    resource_definition:
       apiVersion: v1
       kind: Service
       metadata:
@@ -186,24 +186,24 @@ EXAMPLES = '''
     If the definition file has been encrypted with Ansible Vault it will automatically be decrypted.
   k8s:
     state: present
-    definition: "{{ lookup('file', '/testing/deployment.yml') }}"
+    resource_definition: "{{ lookup('file', '/testing/deployment.yml') }}"
 
 - name: Read definition file from the Ansible controller file system after Jinja templating
   k8s:
     state: present
-    definition: "{{ lookup('template', '/testing/deployment.yml') }}"
+    resource_definition: "{{ lookup('template', '/testing/deployment.yml') }}"
 
 - name: fail on validation errors
   k8s:
     state: present
-    definition: "{{ lookup('template', '/testing/deployment.yml') }}"
+    resource_definition: "{{ lookup('template', '/testing/deployment.yml') }}"
     validate:
       fail_on_error: yes
 
 - name: warn on validation errors, check for unexpected properties
   k8s:
     state: present
-    definition: "{{ lookup('template', '/testing/deployment.yml') }}"
+    resource_definition: "{{ lookup('template', '/testing/deployment.yml') }}"
     validate:
       fail_on_error: no
       strict: yes
